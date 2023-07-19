@@ -1,0 +1,116 @@
+<app-navbar></app-navbar>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+<div class = "container">
+  <div class="input-row">
+  
+    <mat-form-field>
+      <input type="text" matInput [formControl]="itemControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option.description }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+   
+    
+    <mat-form-field>
+      <input type="text" matInput [value]="selectedItem.unit" disabled>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input type="number" matInput [value]="selectedItem.qty" (keyup.enter)="onQtyEnter($event)">
+    </mat-form-field>
+  </div>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Unit</th>
+      <th>Quantity</th>
+      <th>MRP</th>
+      <th>Dis %</th>
+      <th>Dis_rate</th>
+      <th>Price</th>
+      <th>Tax%</th>
+      <th>Tax rate</th>
+      <th>Amount</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let addedItem of addedItems; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ addedItem.code }}</td>
+      <td>{{ addedItem.description }}</td>
+      <td>{{ addedItem.unit }}</td>
+      <td>{{ addedItem.qty }}</td>
+      <td>{{ addedItem.mrp }}</td>
+      <td>{{ addedItem.disc }}</td>
+      <td>{{ addedItem.dis_rate }}</td>
+      <td>{{ addedItem.price }}</td>
+      <td>{{ addedItem.tax }}</td>
+      <td>{{ addedItem.tax_rate }}</td>
+      <td>{{ addedItem.amount }}</td>
+
+      <td><button class="delete-button"  (click)="removeItem(i)"><i class="fas fa-trash"></i></button></td>
+  
+    </tr>
+
+    
+  </tbody>
+ 
+</table>
+
+<footer>
+
+  <tfoot>
+    <tr>
+      <td colspan="2" class="footer-label">Total Number of Items</td>
+      <td>{{ getTotalItemCount() }}</td>
+    </tr>
+  </tfoot>
+
+  <tfoot>
+    <tr>
+      <td colspan="2" class="footer-label">Total MRP </td>
+      <td>{{ footermrp() }}</td>
+    </tr>
+  </tfoot>
+
+  <tfoot>
+    <tr>
+      <td colspan="2" class="footer-label">Total Discount </td>
+      <td>{{ footerdiscount() }}</td>
+    </tr>
+  </tfoot>
+
+  <tfoot>
+    <tr>
+      <td colspan="2" class="footer-label">Total Price </td>
+      <td>{{ footerprice() }}</td>
+    </tr>
+  </tfoot>
+
+  <tfoot>
+    <tr>
+      <td colspan="2" class="footer-label">Total Tax </td>
+      <td>{{ footertax() }}</td>
+    </tr>
+  </tfoot>
+
+
+  <tfoot>
+    <tr>
+      <td colspan="2" class="footer-label">Total Amount </td>
+      <td>{{ calculateTotalAmount() }}</td>
+    </tr>
+  </tfoot>
+</footer>
+
