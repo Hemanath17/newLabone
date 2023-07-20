@@ -1,0 +1,25 @@
+.mat-toolbar {
+    display: flex;
+    justify-content: center;
+    height: 64px; /* Adjust the height as needed */
+}
+
+.toolbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.left-align {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.center-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
