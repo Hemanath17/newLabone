@@ -52,9 +52,44 @@ table {
   
 
 footer {
-    background-color: #f2f2f2;
-    padding: 20px;
-    text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px; 
+  height: 100px;
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  right: 0;
+  background-color: #f2f2f2;
+  
+}
+.item-value {
+  font-size: 50px;
+}
+.item-value,
+  .item-label {
+    margin-right: 10px; /* Adjust the spacing between value and label as needed */
   }
-footer{position: absolute; bottom: 0; left: 0; right: 0;}
+
+.item {
+  display: grid;
+  grid-template-rows: auto auto; /* Display value and label in two columns */
+  justify-items: flex-end;
+  padding: 20px 0 0 20px;
+  
+  &:first-child {
+    justify-items: flex-start;
+  }
+}
+
+.total {
+  background-color: black;
+  .item-value {
+    color: green;
+  }
+  .item-label {
+    color: #fff;
+  }
+}
+
 
