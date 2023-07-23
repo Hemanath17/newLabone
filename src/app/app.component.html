@@ -7,23 +7,22 @@
 
 <div class = "container">
   <div class="input-row">
+    <mat-form-field>
+      <input type="text" matInput [formControl]="itemCodeControl" [matAutocomplete]="autoCode" placeholder="Enter item code">
+      <mat-autocomplete #autoCode="matAutocomplete" [displayWith]="displayCodeFn" (optionSelected)="onOptionCodeSelected($event)">
+        <mat-option *ngFor="let option of filteredCodeOptions | async" [value]="option">
+          {{ option.description }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   
     <mat-form-field>
-      <input type="text" matInput [formControl]="itemControl" [matAutocomplete]="auto">
+      <input type="text" matInput [formControl]="itemControl" [matAutocomplete]="auto" placeholder="Enter item description">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{ option.description }}
         </mat-option>
       </mat-autocomplete>
-
-      <input type="text" matInput [formControl]="itemControl" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          
-        </mat-option>
-      </mat-autocomplete>
-
-
     </mat-form-field>
     
     <mat-form-field>

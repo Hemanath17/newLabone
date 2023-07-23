@@ -27,6 +27,8 @@ export class AppComponent {
   ];
 
   filteredOptions: Observable<Item[]>;
+  filteredCodeOptions: Observable<Item[]>;
+  itemCodeControl = new FormControl();
   emptyItem: Item = { code:'' , description: '', unit: '', qty: 0, mrp: 0, disc: 0, dis_rate:0 , price: 0, tax: 0, tax_rate: 0 , amount: 0 };
   selectedItem: Item ;
   addedItems: Item[] = [];
@@ -34,6 +36,10 @@ export class AppComponent {
     this.filteredOptions = this.itemControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
+    );
+    this.filteredCodeOptions = this.itemCodeControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filterCode(value))
     );
     this.selectedItem = cloneDeep(this.emptyItem);
 
@@ -44,12 +50,29 @@ export class AppComponent {
     return this.options.filter((option) => option.description.toLowerCase().includes(filterValue) || option.code.includes(filterValue));
   }
 
+  private _filterCode(value: string | Item): Item[] {
+    const filterValue = typeof value === 'string' ? value.toLowerCase() : value.code.toLowerCase();
+    return this.options.filter((option) => option.code.toLowerCase().includes(filterValue));
+  }
+
   displayFn(item: Item): string {
     return item ? item.description : '';
   }
 
+  displayCodeFn(item: Item): string {
+    return item ? item.code : '';
+  }
+
+  onOptionCodeSelected(event: any): void {
+    this.selectedItem = cloneDeep(event.option.value);
+    this.itemControl.setValue(this.selectedItem);
+    // Do something with the selected item (by code)
+    console.log('Selected Item (by code):', this.selectedItem);
+  }
+
   onOptionSelected(event: any): void {
     this.selectedItem = cloneDeep(event.option.value);
+    this.itemCodeControl.setValue(this.selectedItem);
     console.log('Selected Item:', this.selectedItem);
   }
 

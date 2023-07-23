@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 64px;
 }
 
 .left-align {
@@ -26,31 +27,44 @@
 
 
 .admin-image {
-    width: 50px; 
-    height: 50px;
+    width: 40px; 
+    height: 40px;
     border-radius: 50%; 
     background-color: #7f7f7f;
-    color: white;
-    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 10px; 
+    margin-right: 10px;
+    color: #fff !important;
   }
 
 .admin-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    width: 140px;
+    padding-left: 16px;
   }
   .admin-details {
     order: 1; 
     margin-right: 10px; 
+    display: flex;
+    flex-direction: column;
+    .user-details {
+      height: 20px;
+    }
   }
 
 
   .admin-info div {
-    font-weight: bold;
     color: #555;
-    font-size: 10px; 
+    font-size: 14px; 
+  }
+
+  .notification {
+    padding: 15px;
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+    width: 50px;
+    text-align: center;
   }
