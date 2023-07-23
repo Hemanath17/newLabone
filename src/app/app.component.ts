@@ -103,6 +103,7 @@ export class AppComponent {
 
         this.selectedItem = cloneDeep(this.emptyItem);
         this.itemControl.setValue('');
+        this.itemCodeControl.setValue('');
       }
     }
     
@@ -111,6 +112,7 @@ export class AppComponent {
   editItem(item: Item): void {
     this.selectedItem = item;
     this.itemControl.setValue(item);
+    this.itemCodeControl.setValue(item);
   }
   
   calculateTotalAmount(): number {
