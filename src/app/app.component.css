@@ -51,10 +51,79 @@ table {
   }
   
 
-footer {
+  footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px; 
+    height: 100px;
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    right: 0;
     background-color: #f2f2f2;
-    padding: 20px;
-    text-align: center;
+    
   }
-footer{position: absolute; bottom: 0; left: 0; right: 0;}
+  .item-value {
+    font-size: 50px;
+  }
+  .item-value,
+    .item-label {
+      margin-right: 10px; /* Adjust the spacing between value and label as needed */
+    }
+  
+  .item {
+    display: grid;
+    grid-template-rows: auto auto; /* Display value and label in two columns */
+    justify-items: flex-end;
+    padding: 20px 0 0 20px;
+    
+    &:first-child {
+      justify-items: flex-start;
+    }
+  }
 
+  .titems{
+    .item-value {
+      color: rgb(130, 23, 191);
+    }
+
+  }
+
+  .mrp{
+    .item-value {
+      color: rgb(224, 91, 186);
+    }
+
+  }
+
+  .discount{
+    .item-value {
+      color: rgb(228, 228, 76);
+    }
+
+  }
+
+  .price{
+    .item-value {
+      color: rgb(67, 192, 211);
+    }
+
+  }
+
+  .tax{
+    .item-value {
+      color: rgb(59, 59, 219);
+    }
+
+  }
+  
+  .total {
+    background-color: black;
+    .item-value {
+      color: green;
+    }
+    
+    .item-label {
+      color: #fff;
+    }
+  }
